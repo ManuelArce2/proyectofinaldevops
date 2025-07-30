@@ -22,7 +22,7 @@ pipeline {
         stage("Test") {
             steps {
                 script {
-                    docker.build('IMAGE_NAME_TEST', '--file=Dockerfile.test .')
+                    docker.build(IMAGE_NAME_TEST, '--file=Dockerfile.test .') 
                 }
             }
     
@@ -30,7 +30,7 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    docker.build('DOCKER_IMAGE', '.')
+                    docker.build(DOCKER_IMAGE, '.') 
                 }
             }
         }

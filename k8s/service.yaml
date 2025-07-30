@@ -2,10 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: proyectofinal
+  namespace: proyectofinal
 spec:
+  type: NodePort
   selector:
     app: proyectofinal
   ports:
-    - protocol: TCP
+    - nodePort: 30000
       port: 7000
       targetPort: 7000

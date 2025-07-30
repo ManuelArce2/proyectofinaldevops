@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        PATH
         IMAGE_NAME = 'proyectofinal'
         IMAGE_NAME_TEST = 'proyectofinaltesting'
         DOCKER_USERNAME = 'man2101'

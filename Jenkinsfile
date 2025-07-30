@@ -13,9 +13,6 @@ pipeline {
     triggers {
         githubPush()
     }
-    stage{-
-    }
-
 
     stages {
         stage("Checkout") {

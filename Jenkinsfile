@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        PATH
         IMAGE_NAME = 'proyectofinal'
         IMAGE_NAME_TEST = 'proyectofinaltesting'
         DOCKER_USERNAME = 'man2101'
@@ -49,9 +50,9 @@ pipeline {
         stage("Deploy") {
             steps {
                 script {
-                    sh 'kubectl apply -f k8s/namespace.yaml'
-                    sh 'kubectl apply -f k8s/deployment.yaml'
-                    sh 'kubectl apply -f k8s/service.yaml'
+                    bat 'kubectl apply -f k8s/namespace.yaml'
+                    bat 'kubectl apply -f k8s/deployment.yaml'
+                    bat 'kubectl apply -f k8s/service.yaml'
                 }
             }
         }

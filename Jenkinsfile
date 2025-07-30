@@ -7,11 +7,15 @@ pipeline {
         DOCKER_USERNAME = 'man2101'
         DOCKER_CREDENTIALS = 'docker-hub-credentials'
         DOCKER_IMAGE = "${DOCKER_USERNAME}/${IMAGE_NAME}"
+
     }
 
     triggers {
         githubPush()
     }
+    stage{-
+    }
+
 
     stages {
         stage("Checkout") {
@@ -56,4 +60,23 @@ pipeline {
             }
         }
     }
+post {
+        failure {
+            echo '⚠️ El pipeline falló. Enviando notificación por correo...'
+
+            emailext subject: "❌ Fallo en el pipeline de proyectofinal",
+                     body: """Hola Manuel,
+
+El pipeline del proyecto *proyectofinal* ha fallado durante su ejecución en Jenkins.
+
+Por favor revisa los logs del pipeline para más detalles:
+- Proyecto: proyectofinal
+- Repositorio: https://github.com/ManuelArce2/proyectofinaldevops
+
+Saludos,
+Tu Jenkins Bot
+""",
+                     to: 'jmanuel2101@gmail.com'
+}
+}
 }

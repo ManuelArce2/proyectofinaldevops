@@ -48,11 +48,10 @@ pipeline {
 
         stage("Deploy") {
             steps {
-                script {
-                    bat 'kubectl cluster-info'
-                    bat 'kubectl apply -f k8s/namespace.yaml'
-                    bat 'kubectl apply -f k8s/deployment.yaml'
-                    bat 'kubectl apply -f k8s/service.yaml'
+                withCredentials([file(credentialsId: 'kubeconfig-dev', variable: 'KUBECONFIG')]) {
+                    bat 'kubectl apply -f k8s/namespace.yaml --kubeconfig=%KUBECONFIG%'
+                    bat 'kubectl apply -f k8s/deployment.yaml --kubeconfig=%KUBECONFIG%'
+                    bat 'kubectl apply -f k8s/service.yaml --kubeconfig=%KUBECONFIG%'
                 }
             }
         }

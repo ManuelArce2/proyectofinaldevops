@@ -6,6 +6,6 @@ spec:
   selector:
     app: proyectofinal
   ports:
-    - nodePort: 80
+    - protocol: TCP
       port: 7000
       targetPort: 7000

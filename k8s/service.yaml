@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: proyectofinal
+spec:
+  selector:
+    app: proyectofinal
+  ports:
+    - nodePort: 80
+      port: 7000
+      targetPort: 7000

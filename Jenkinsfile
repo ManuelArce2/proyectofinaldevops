@@ -36,4 +36,22 @@ pipeline {
             }
         }
     }
+    stage("Push") {
+        steps {
+            script {
+                docker.withRegistry("https://index.docker.io/v1/", "${DOCKER_CREDENTIALS}") {
+                    image.push()
+                }
+            }
+        }
+    }
+    stage("Deploy") {
+        steps {
+            script {
+                sh 'kubectl apply -f k8s/namespace.yaml'
+                sh 'kubectl apply -f k8s/deployment.yaml'
+                sh 'kubectl apply -f k8s/service.yaml'
+            }
+        }
+    }
 }

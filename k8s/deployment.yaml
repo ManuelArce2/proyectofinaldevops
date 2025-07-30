@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proyectofinal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proyectofinal
+  template:
+    metadata:
+      labels:
+        app: proyectofinal
+    spec:
+      containers:
+      - name: proyectofinal
+        image: man2101/proyectofinal:latest
+        ports:
+        - containerPort: 7000
